@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Brew & Bean Café</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f2ebe5;
+    }
+
+    header {
+      background: #4a2c2a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 32px;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .container {
+      padding: 25px;
+      display: flex;
+      gap: 25px;
+    }
+
+    .menu {
+      flex: 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .info {
+      padding: 12px 15px;
+    }
+
+    .info h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #3d2a24;
+    }
+
+    .price {
+      color: #7a645c;
+      font-size: 15px;
+      margin: 5px 0 12px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #d97742;
+      color: white;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #c26632;
+    }
+
+    .bill-box {
+      flex: 1;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      height: fit-content;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.20);
+      position: sticky;
+      top: 20px;
+    }
+
+    .bill-title {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #4a2c2a;
+      font-weight: 600;
+    }
+
+    .item-line {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+
+    .place-order {
+      background: #4a2c2a;
+      margin-top: 15px;
+      font-size: 18px;
+    }
+
+    footer {
+      background: #4a2c2a;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      margin-top: 30px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>☕ Brew & Bean Café — Order Online</header>
+
+<div class="container">
+
+  <!-- MENU SECTION -->
+  <div class="menu">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1000">
+      <div class="info">
+        <h3>Classic Cappuccino</h3>
+        <p class="price">₹140</p>
+        <button onclick="addItem('Classic Cappuccino',140)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000">
+      <div class="info">
+        <h3>Vanilla Latte</h3>
+        <p class="price">₹160</p>
+        <button onclick="addItem('Vanilla Latte',160)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=1000">
+      <div class="info">
+        <h3>Mocha Chocolate</h3>
+        <p class="price">₹180</p>
+        <button onclick="addItem('Mocha Chocolate',180)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?q=80&w=1000">
+      <div class="info">
+        <h3>Iced Caramel Coffee</h3>
+        <p class="price">₹170</p>
+        <button onclick="addItem('Iced Caramel Coffee',170)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=1000">
+      <div class="info">
+        <h3>Fresh Croissant</h3>
+        <p class="price">₹90</p>
+        <button onclick="addItem('Fresh Croissant',90)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1000">
+      <div class="info">
+        <h3>Chocolate Brownie</h3>
+        <p class="price">₹110</p>
+        <button onclick="addItem('Chocolate Brownie',110)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?q=80&w=1000">
+      <div class="info">
+        <h3>Blueberry Muffin</h3>
+        <p class="price">₹95</p>
+        <button onclick="addItem('Blueberry Muffin',95)">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BILLING SECTION -->
+  <div class="bill-box">
+    <div class="bill-title">🧾 Your Order</div>
+
+    <div id="bill-items"></div>
+
+    <hr>
+    <h3>Total Amount: ₹<span id="total">0</span></h3>
+
+    <button class="place-order" onclick="placeOrder()">Place Order</button>
+  </div>
+
+</div>
+
+<footer>
+  © Brew & Bean Café | Crafted with Love ☕
+</footer>
+
+<script>
+  let total = 0;
+  let orders = [];
+
+  function addItem(name, price) {
+    total += price;
+    orders.push(`${name} - ₹${price}`);
+
+    let bill = document.getElementById("bill-items");
+
+    let line = document.createElement("div");
+    line.className = "item-line";
+    line.innerHTML = `<span>${name}</span> <span>₹${price}</span>`;
+
+    bill.appendChild(line);
+
+    document.getElementById("total").innerText = total;
+  }
+
+  function placeOrder() {
+    if (orders.length === 0) {
+      alert("Your cart is empty! Add something first 😭💗");
+      return;
+    }
+
+    let summary = orders.join("\n");
+
+    alert(
+      "🎉 ORDER PLACED SUCCESSFULLY! 🎉\n\n" +
+      "Your Order:\n" + summary +
+      "\n\nTOTAL: ₹" + total +
+      "\n\nThank you for ordering from Brew & Bean Café ☕💛"
+    );
+
+    // Clear cart
+    document.getElementById("bill-items").innerHTML = "";
+    document.getElementById("total").innerText = 0;
+    total = 0;
+    orders = [];
+  }
+</script>
+
+</body>
+</html>
